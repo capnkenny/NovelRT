@@ -49,9 +49,11 @@ jobs:
       - name: 'Checkout code'
         uses: actions/checkout@v2
       - name: 'Run Windows Setup'
-        run: '$GITHUB_WORKSPACE/scripts/machine-setup.cmd'  
+        run: '$GITHUB_WORKSPACE/scripts/machine-setup.cmd'
+        shell: cmd
       - name: 'Run CI Build Script'
         run: '$GITHUB_WORKSPACE/scripts/cibuild.cmd --configuration DEBUG'
+        shell: cmd
 
 
 
