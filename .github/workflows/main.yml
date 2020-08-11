@@ -56,7 +56,7 @@ jobs:
       
       - name: 'Copy vcpkg'
         if: steps.cache-vcpkg.outputs.cache-hit == 'true'
-        run: 'xcopy D:/a/NovelRT/NovelRT/vcpkg C:/Users/runneradmin/vcpkg /E/H/C/I'
+        run: 'robocopy /CREATE /COPYALL /DCOPY:T D:/a/NovelRT/NovelRT/vcpkg C:/Users/runneradmin/vcpkg'
         shell: cmd
         
       - name: 'Install SetupTools'
@@ -96,7 +96,7 @@ jobs:
             
       - name: 'Copy vcpkg'
         if: steps.cache-vcpkg.outputs.cache-hit == 'true'
-        run: 'xcopy D:/a/NovelRT/NovelRT/vcpkg C:/Users/runneradmin/vcpkg /E/H/C/I'
+        run: 'robocopy /CREATE /COPYALL /DCOPY:T D:/a/NovelRT/NovelRT/vcpkg C:/Users/runneradmin/vcpkg'
         shell: cmd
         
       - name: 'Install SetupTools'
