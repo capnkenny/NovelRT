@@ -56,7 +56,7 @@ jobs:
       
       - name: 'Copy vcpkg'
         if: steps.cache-vcpkg.outputs.cache-hit == 'true'
-        run: 'robocopy /CREATE /COPYALL /DCOPY:T D:/a/NovelRT/NovelRT/vcpkg C:/Users/runneradmin/vcpkg'
+        run: 'dir C:/Users/runneradmin'
         shell: cmd
         
       - name: 'Install SetupTools'
