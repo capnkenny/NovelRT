@@ -48,12 +48,21 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: 'Checkout code'
         uses: actions/checkout@v2
+      - name: 'Cache vcpkg'
+        id: cache-vcpkg
+        uses: actions/cache@v2
+        with:
+            path: vcpkg
+            key: ${{ runner.os }}-vcpkg
+        
+        
       - name: 'Run Windows Setup'
+        if: steps.cache-vcpkg.outputs.cache-hit != 'true'
         run: '%GITHUB_WORKSPACE%/scripts/machine-setup.cmd'
         shell: cmd
       - name: 'Run CI Build Script'
-        run: '%GITHUB_WORKSPACE%/scripts/cibuild.cmd --configuration DEBUG'
-        shell: cmd
+        run: '%GITHUB_WORKSPACE%/scripts/build.ps1 -ci'
+        shell: powershell
 
 
 
