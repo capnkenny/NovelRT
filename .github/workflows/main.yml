@@ -52,8 +52,8 @@ jobs:
         id: cache-vcpkg
         uses: actions/cache@v2
         with:
-            path: vcpkg
-            key: ${{ runner.os }}-vcpkg
+            path: %GITHUB_WORKSPACE%/vcpkg
+            key: ${{ runner.os }}-vcpkg-debug
         
         
       - name: 'Run Windows Setup'
@@ -64,7 +64,31 @@ jobs:
       - name: 'Run CI Build Script'
         run: '%GITHUB_WORKSPACE%/scripts/cibuild.cmd'
         shell: cmd
-
+  Windows_x64_Release:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: 'Checkout code'
+        uses: actions/checkout@v2
+      - name: 'Cache vcpkg'
+        id: cache-vcpkg
+        uses: actions/cache@v2
+        with:
+            path: %GITHUB_WORKSPACE%/vcpkg
+            key: ${{ runner.os }}-vcpkg-rel
+        
+        
+      - name: 'Run Windows Setup'
+        if: steps.cache-vcpkg.outputs.cache-hit != 'true'
+        run: '%GITHUB_WORKSPACE%/scripts/machine-setup.cmd'
+        shell: cmd
+        
+      - name: 'Run CI Build Script'
+        run: '%GITHUB_WORKSPACE%/scripts/cibuild.cmd -configuration Release'
+        shell: cmd
 
 
 
