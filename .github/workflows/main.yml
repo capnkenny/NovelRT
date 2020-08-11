@@ -11,7 +11,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  ubuntu_x64_debug:
     # The type of runner that the job will run on
     runs-on: ubuntu-16.04
     container:
@@ -25,3 +25,22 @@ jobs:
         
       - name: 'Run CI Build Script'
         run: '$GITHUB_WORKSPACE/scripts/cibuild.sh --configuration DEBUG'
+  ubuntu_x64_release:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-16.04
+    container:
+      image: 'finitereality/novelrt-build:latest'
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: 'Checkout code'
+        uses: actions/checkout@v2
+        
+      - name: 'Run CI Build Script'
+        run: '$GITHUB_WORKSPACE/scripts/cibuild.sh --configuration RELEASE'
+
+
+
+
+
