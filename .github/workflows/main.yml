@@ -56,7 +56,7 @@ jobs:
       
       - name: 'Copy vcpkg'
         if: steps.cache-vcpkg.outputs.cache-hit == 'true'
-        run: 'dir C:/Users/runneradmin'
+        run: 'dir C:\\Users\\runneradmin'
         shell: cmd
         
       - name: 'Install SetupTools'
