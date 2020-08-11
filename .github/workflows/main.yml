@@ -39,6 +39,19 @@ jobs:
         
       - name: 'Run CI Build Script'
         run: '$GITHUB_WORKSPACE/scripts/cibuild.sh --configuration RELEASE'
+  Windows_x64_Debug:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: 'Checkout code'
+        uses: actions/checkout@v2
+      - name: 'Run Windows Setup'
+        run: '$GITHUB_WORKSPACE/scripts/machine-setup.cmd'  
+      - name: 'Run CI Build Script'
+        run: '$GITHUB_WORKSPACE/scripts/cibuild.cmd --configuration DEBUG'
 
 
 
