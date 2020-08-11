@@ -52,7 +52,7 @@ jobs:
         id: cache-vcpkg
         uses: actions/cache@v2
         with:
-            path: %GITHUB_WORKSPACE%/vcpkg
+            path: '%GITHUB_WORKSPACE%/vcpkg'
             key: ${{ runner.os }}-vcpkg-debug
         
         
@@ -77,7 +77,7 @@ jobs:
         id: cache-vcpkg
         uses: actions/cache@v2
         with:
-            path: %GITHUB_WORKSPACE%/vcpkg
+            path: '%GITHUB_WORKSPACE%/vcpkg'
             key: ${{ runner.os }}-vcpkg-rel
         
         
