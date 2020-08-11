@@ -55,17 +55,17 @@ jobs:
             key: ${{ runner.os }}-vcpkg-debug
       
       - name: 'Copy vcpkg'
-        if: steps.cache-vcpkg.outputs.cache-hit = 'true'
+        if: steps.cache-vcpkg.outputs.cache-hit == 'true'
         run: 'xcopy D:/a/NovelRT/NovelRT/vcpkg C:/Users/runneradmin/vcpkg /E/H/C/I'
         shell: cmd
         
       - name: 'Install SetupTools'
-        if: steps.cache-vcpkg.outputs.cache-hit = 'true'
+        if: steps.cache-vcpkg.outputs.cache-hit == 'true'
         run: 'python -m pip install setuptools'
         shell: cmd
       
       - name: 'Install GLAD'
-        if: steps.cache-vcpkg.outputs.cache-hit = 'true'
+        if: steps.cache-vcpkg.outputs.cache-hit == 'true'
         run: 'python -m pip install glad'
         shell: cmd
         
@@ -95,17 +95,17 @@ jobs:
             key: ${{ runner.os }}-vcpkg-rel
             
       - name: 'Copy vcpkg'
-        if: steps.cache-vcpkg.outputs.cache-hit = 'true'
+        if: steps.cache-vcpkg.outputs.cache-hit == 'true'
         run: 'xcopy D:/a/NovelRT/NovelRT/vcpkg C:/Users/runneradmin/vcpkg /E/H/C/I'
         shell: cmd
         
       - name: 'Install SetupTools'
-        if: steps.cache-vcpkg.outputs.cache-hit = 'true'
+        if: steps.cache-vcpkg.outputs.cache-hit =='true'
         run: 'python -m pip install setuptools'
         shell: cmd
       
       - name: 'Install GLAD'
-        if: steps.cache-vcpkg.outputs.cache-hit = 'true'
+        if: steps.cache-vcpkg.outputs.cache-hit == 'true'
         run: 'python -m pip install glad'
         shell: cmd
         
