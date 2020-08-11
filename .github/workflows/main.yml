@@ -52,9 +52,23 @@ jobs:
         id: cache-vcpkg
         uses: actions/cache@v2
         with:
-            path: '%GITHUB_WORKSPACE%/vcpkg'
+            path: 'C:/Users/runneradmin/vcpkg'
             key: ${{ runner.os }}-vcpkg-debug
+      
+      - name: 'Copy vcpkg'
+        if: steps.cache-vcpkg.outputs.cache-hit = 'true'
+        run: 'xcopy D:/a/NovelRT/NovelRT/vcpkg C:/Users/runneradmin/vcpkg /E/H/C/I'
+        shell: cmd
         
+      - name: 'Install SetupTools'
+        if: steps.cache-vcpkg.outputs.cache-hit = 'true'
+        run: 'python -m pip install setuptools'
+        shell: cmd
+      
+      - name: 'Install GLAD'
+        if: steps.cache-vcpkg.outputs.cache-hit = 'true'
+        run: 'python -m pip install glad'
+        shell: cmd
         
       - name: 'Run Windows Setup'
         if: steps.cache-vcpkg.outputs.cache-hit != 'true'
@@ -73,13 +87,28 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: 'Checkout code'
         uses: actions/checkout@v2
+        
       - name: 'Cache vcpkg'
         id: cache-vcpkg
         uses: actions/cache@v2
         with:
-            path: '%GITHUB_WORKSPACE%/vcpkg'
+            path: 'C:/Users/runneradmin/vcpkg'
             key: ${{ runner.os }}-vcpkg-rel
+            
+      - name: 'Copy vcpkg'
+        if: steps.cache-vcpkg.outputs.cache-hit = 'true'
+        run: 'xcopy D:/a/NovelRT/NovelRT/vcpkg C:/Users/runneradmin/vcpkg /E/H/C/I'
+        shell: cmd
         
+      - name: 'Install SetupTools'
+        if: steps.cache-vcpkg.outputs.cache-hit = 'true'
+        run: 'python -m pip install setuptools'
+        shell: cmd
+      
+      - name: 'Install GLAD'
+        if: steps.cache-vcpkg.outputs.cache-hit = 'true'
+        run: 'python -m pip install glad'
+        shell: cmd
         
       - name: 'Run Windows Setup'
         if: steps.cache-vcpkg.outputs.cache-hit != 'true'
