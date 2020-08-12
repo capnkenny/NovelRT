@@ -53,11 +53,6 @@ jobs:
         with:
             path: 'C:/Users/runneradmin/vcpkg'
             key: ${{ runner.os }}-vcpkg-debug
-      
-      - name: 'Copy vcpkg'
-        if: steps.cache-vcpkg.outputs.cache-hit == 'true'
-        run: 'dir C:\Users\runneradmin'
-        shell: cmd
         
       - name: 'Install SetupTools'
         if: steps.cache-vcpkg.outputs.cache-hit == 'true'
@@ -93,11 +88,6 @@ jobs:
         with:
             path: 'C:/Users/runneradmin/vcpkg'
             key: ${{ runner.os }}-vcpkg-rel
-            
-      - name: 'Copy vcpkg'
-        if: steps.cache-vcpkg.outputs.cache-hit == 'true'
-        run: 'robocopy /CREATE /COPYALL /DCOPY:T D:/a/NovelRT/NovelRT/vcpkg C:/Users/runneradmin/vcpkg'
-        shell: cmd
         
       - name: 'Install SetupTools'
         if: steps.cache-vcpkg.outputs.cache-hit =='true'
